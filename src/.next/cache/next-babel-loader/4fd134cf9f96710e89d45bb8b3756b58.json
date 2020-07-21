@@ -1,1 +1,0 @@
-{"ast":null,"code":"import Catalog from './catalog';\nexport default Catalog;","map":{"version":3,"sources":["/home/jose.valente/personal/sempreemcasa/src/pages/index.js"],"names":["Catalog"],"mappings":"AAAA,OAAOA,OAAP,MAAoB,WAApB;AAEA,eAAeA,OAAf","sourcesContent":["import Catalog from './catalog';\n\nexport default Catalog;"]},"metadata":{},"sourceType":"module"}
