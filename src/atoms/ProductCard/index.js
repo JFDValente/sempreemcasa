@@ -1,0 +1,140 @@
+import { useState, useEffect } from 'react';
+import { formatCurrency } from '../../utils/currency';
+import { formatDiscount } from '../../utils/discount';
+
+import Style from './ProductCard.style';
+
+/**
+ * This Atom renders all the information for a given product, in the catalog
+ */
+const ProductCard = (props) => {
+  const [selectablesPacks, setSelectablesPacks] = useState([]);
+  const [priceValues, setPriceValues] = useState({
+    originalPrice: 0,
+    currentPrice: 0,
+    unitPrice: 0,
+    discount: 0,
+  });
+  const { image, name, vendor, packs } = props.product;
+
+  /**
+   * Add 'Selected' prop to the packs, to control the choose of the user
+   */
+  useEffect(() => {
+    const updatedPacks = packs.flatMap(pack => (pack.status ? { ...pack, selected: false} : []));
+    if (updatedPacks.length){
+      updatedPacks[0].selected = true;
+    }
+    setSelectablesPacks(updatedPacks);
+  },[])
+
+  /**
+   * Updates the values of the product card based on the pack
+   */
+  useEffect(() => {
+    const selectedPack = selectablesPacks.find(pack => pack.selected);
+    if (selectedPack) {
+      const { originalPrice, currentPrice, unities } = selectedPack;
+      const unitPrice = currentPrice/unities;
+      const discount = 100 - ((currentPrice*100)/originalPrice);
+      setPriceValues({
+        originalPrice,
+        currentPrice,
+        unitPrice,
+        discount,
+      })
+    }
+  },[selectablesPacks]);
+
+  /**
+   *  Modifies the selected item acordding by click
+   */
+  const onClickPack = (uuid) => {
+    const updatedPacks = selectablesPacks.map((item) => (
+      item.uuid === uuid ? { ...item, selected: true } : { ...item, selected: false} 
+    ));
+    setSelectablesPacks(updatedPacks);
+  };
+
+  return (
+    <Style.Container>
+      <Style.ImageContainer>
+        {!!(priceValues.discount > 15) && (
+          <Style.DiscountBanner>
+            <Style.DiscountValueBanner>
+              {formatDiscount(priceValues.discount, false)}
+            </Style.DiscountValueBanner>
+            <Style.TextDiscountBanner>
+              {'%OFF'}
+            </Style.TextDiscountBanner>  
+            <Style.CutBanner/>
+          </Style.DiscountBanner>
+        )}
+        <Style.Image 
+          src={image}
+          alt={'product-image'}
+        />
+      </Style.ImageContainer>
+      <Style.Title>
+        {vendor}
+      </Style.Title>
+      <Style.Subtitle>
+        {name}
+      </Style.Subtitle>
+      <Style.ValuesContainer>
+        <Style.PriceContainer>
+          {!!priceValues.discount && (
+            <Style.TextOriginalPrice>
+              <Style.PassThrough>
+                {`De ${formatCurrency(priceValues.originalPrice)}`}
+              </Style.PassThrough>
+              {' Por:'}
+            </Style.TextOriginalPrice>
+          )}
+          <Style.CurrentPrice>
+            {formatCurrency(priceValues.currentPrice)}
+          </Style.CurrentPrice>
+          <Style.UnitPrice>
+            <b>{formatCurrency(priceValues.unitPrice)}</b>{'/un'}
+          </Style.UnitPrice>
+        </Style.PriceContainer>
+        {!!priceValues.discount && (
+          <Style.DiscountContainer>
+            <Style.DiscountLabel>
+              {'Desconto'}
+            </Style.DiscountLabel>
+            <Style.DiscountPercent>
+              {formatDiscount(priceValues.discount, true)}
+            </Style.DiscountPercent>
+          </Style.DiscountContainer>
+        )}
+      </Style.ValuesContainer>
+      <Style.LabelPack>
+        {'ESCOLHA O PACK'}
+      </Style.LabelPack>
+      <Style.PackContainer>
+        {
+          selectablesPacks.map(pack => (
+            <Style.Pack
+              key={pack.uuid} 
+              onClick={() => {onClickPack(pack.uuid)}} 
+              selected={pack.selected}
+            >
+              <Style.PackUnities>
+                {pack.unities}
+              </Style.PackUnities>
+              <Style.TextUnities>
+                {'UNIDADES'}
+              </Style.TextUnities>  
+            </Style.Pack>
+          ))
+        }
+      </Style.PackContainer>
+      <Style.AddButton>
+        {'ADICIONAR AO CARRINHO'}
+      </Style.AddButton>
+    </Style.Container>
+  );
+}
+
+export default ProductCard;
