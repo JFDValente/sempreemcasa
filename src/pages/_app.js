@@ -2,6 +2,8 @@ import App from 'next/app';
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 import styledNormalize from 'styled-normalize';
+import { ThemeProvider } from 'styled-components';
+import baseTheme from '../utils/theme';
 
 const GlobalStyle = createGlobalStyle`
 	${reset}
@@ -16,10 +18,12 @@ class MainApp extends App {
 	render() {
 		const { Component, pageProps } = this.props;
 		return (
-			<>
-				<Component {...pageProps} />
-				<GlobalStyle />
-			</>
+			<ThemeProvider theme={baseTheme}>
+				<>
+					<Component {...pageProps} />
+					<GlobalStyle />
+				</>
+			</ThemeProvider>
 		);
 	}
 }
