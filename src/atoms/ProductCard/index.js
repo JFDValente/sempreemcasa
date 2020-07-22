@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'react';
+import {
+  arrayOf, bool, number, shape, string,
+} from 'prop-types';
 import { formatCurrency } from '../../utils/currency';
 import { formatDiscount } from '../../utils/discount';
 
@@ -136,5 +139,23 @@ const ProductCard = (props) => {
     </Style.Container>
   );
 }
+
+ProductCard.propTypes = {
+  image: string.isRequired,
+  name: string.isRequired,
+  vendor: string,
+  packs: arrayOf(shape({
+    uuid: string.isRequired,
+    status: bool.isRequired,
+    originalPrice: number.isRequired,
+    currentPrice: number.isRequired,
+    unities: number.isRequired,
+  })),
+};
+
+ProductCard.defaultProps = {
+  vendor: '',
+  packs: [],
+};
 
 export default ProductCard;
