@@ -3,12 +3,14 @@ import {
   node,
   string,
 } from 'prop-types';
+import TopBar from '../../organisms/TopBar';
 
 import Style from './Style';
 
 function MainTemplate({ title, children }) {
   return (
     <Style.Container>
+      <TopBar />
       <Style.Content>
         {children}
       </Style.Content>
