@@ -18,7 +18,8 @@ const ProductCard = (props) => {
     unitPrice: 0,
     discount: 0,
   });
-  const { image, name, vendor, packs } = props.product;
+
+  const { image, name, vendor, packs } = props;
 
   /**
    * Add 'Selected' prop to the packs, to control the choose of the user
