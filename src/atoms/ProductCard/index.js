@@ -5,7 +5,7 @@ import {
 import { formatCurrency } from '../../utils/currency';
 import { formatDiscount } from '../../utils/discount';
 
-import Style from './ProductCard.style';
+import Style from './Style';
 
 /**
  * This Atom renders all the information for a given product, in the catalog

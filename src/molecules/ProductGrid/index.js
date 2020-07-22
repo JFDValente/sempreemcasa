@@ -1,6 +1,6 @@
 import helper from './helper';
 import ProductCard from '../../atoms/ProductCard';
-import Style from './ProductGrid.style';
+import Style from './Style';
 
 const src = 'https://cdn.shopify.com/s/files/1/0010/3150/3987/products/Refrigerante_Pepsi_Twist_350ml_Lata_2x_a17661dd-2787-4a55-9688-75aff906bc22.png?v=1567666266';
 const packsMock = [
