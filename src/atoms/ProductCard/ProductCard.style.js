@@ -8,7 +8,8 @@ const Container = styled.div`
   padding: 8px 16px;
   background-color: #FFFFFF;
   height: 446px;
-  width: 246px;
+  min-width: 230px;
+  max-width: 350px;
   font-size: 14px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
@@ -118,6 +119,7 @@ const DiscountContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
+  min-width: 86px;
 `;
 
 const DiscountLabel = styled.span`
