@@ -29,7 +29,7 @@ const DiscountBanner = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  height: 21px;
+  height: 22px;
   width: 75px;
   background-color: #D05D5D;
 `;
@@ -38,8 +38,8 @@ const CutBanner = styled.div`
   position: relative;
   top:-22px;
   left:62px;
-  border-bottom: 21px solid #FFFFFF;
-  border-left: 13px solid #D05D5D;
+  border-bottom: 22px solid #FFFFFF;
+  border-left: 14px solid #D05D5D;
   width 0;
 `;
 

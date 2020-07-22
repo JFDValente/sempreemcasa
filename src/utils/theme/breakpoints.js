@@ -4,7 +4,6 @@ const breakpoints = {
   lg: 992,
 };
 
-const keys = Object.keys(breakpoints);
 const unit = 'px';
 
 function up(key) {
