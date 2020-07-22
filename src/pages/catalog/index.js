@@ -1,9 +1,9 @@
 import MainTemplate from '../../templates/MainTemplate';
-import ProductGrid from '../../molecules/ProductGrid';
+import ProductListSection from '../../organisms/ProductListSection';
 
 const Catalog = () => (
   <MainTemplate>
-    <ProductGrid />
+    <ProductListSection />
   </MainTemplate>
 );
 

@@ -79,12 +79,14 @@ const ProductCard = (props) => {
           alt={'product-image'}
         />
       </Style.ImageContainer>
-      <Style.Title>
-        {vendor}
-      </Style.Title>
-      <Style.Subtitle>
-        {name}
-      </Style.Subtitle>
+      <Style.Description>
+        <Style.Title>
+          {vendor}
+        </Style.Title>
+        <Style.Subtitle>
+          {name}
+        </Style.Subtitle>
+      </Style.Description>
       <Style.ValuesContainer>
         <Style.PriceContainer>
           {!!priceValues.discount && (

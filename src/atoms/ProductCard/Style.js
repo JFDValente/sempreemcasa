@@ -63,6 +63,11 @@ const Image = styled.img`
   mix-blend-mode: multiply;
 `;
 
+const Description = styled.div`
+  height: 47.8px;
+  box-sizing: border-box;
+`;
+
 const Title = styled.h4`
   font-weight: bold;
   margin-top: 8px;
@@ -70,10 +75,17 @@ const Title = styled.h4`
 `;
 
 const Subtitle = styled.p`
+  font-size: 12px;
   margin-top: 2px;
   text-align: center;
   color: #878787;
-  max-width: 80%;
+  width: 100%;
+  line-height: 14px;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 `;
 
 const ValuesContainer = styled.div`
@@ -119,7 +131,7 @@ const DiscountContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
-  min-width: 86px;
+  min-width: 80px;
 `;
 
 const DiscountLabel = styled.span`
@@ -217,6 +229,7 @@ export default {
   DiscountValueBanner,
   TextDiscountBanner,
   Image,
+  Description,
   Title,
   Subtitle,
   ValuesContainer,
