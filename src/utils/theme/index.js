@@ -1,3 +1,7 @@
 import breakpoints from './breakpoints';
+import width from './width';
 
-export default { breakpoints };
+export default {
+  breakpoints,
+  width,
+};

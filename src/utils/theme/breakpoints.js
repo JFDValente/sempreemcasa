@@ -1,7 +1,7 @@
 const breakpoints = {
-  sm: 576,
+  sm: 375,
   md: 768,
-  lg: 992,
+  lg: 1024,
 };
 
 const unit = 'px';
