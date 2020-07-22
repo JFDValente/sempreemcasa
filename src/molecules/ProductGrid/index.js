@@ -46,7 +46,7 @@ products.push(product);
 
 const columnsPerRow = { mobile: 1, tablet: 2, desktop: 4 };
 
-function ProductGrid(props){
+const ProductGrid = (props) => {
   const columns = helper.getColumns(columnsPerRow);
   const rowCount = helper.getRowCount(products.length, columnsPerRow);
 
