@@ -3,7 +3,12 @@ import styled from 'styled-components';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   height: 100vh;
+`;
+
+const UpPart = styled.div`
+  max-height: 80vh;
 `;
 
 const Header = styled.div`
@@ -46,14 +51,70 @@ const CloseButton = styled.button`
 `;
 
 const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   padding: 15px 5px;
 `;
 
 const Footer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 96px;
+  border-top: 1px solid #C5C4C4;
+  padding: 0 5px;
+  background-color: #FFFFFF;
+`;
+
+const TotalContainer = styled.div`
+  text-align: right;
+  width: 100%;
+  font-weight: bold;
+  margin-bottom: 5px;
+`;
+
+const TotalLabel = styled.span`
+  text-align: right;
+  color: #565656;
+  font-size: 20px;
+`;
+
+const TotalValue = styled.span`
+  margin-left: 5px;
+  text-align: right;
+  font-size: 25px;
+`;
+
+const TotalDiscount = styled.p`
+  font-size: 12px;
+  text-align: right;
+  color: #3F841F;
+  width: 100%;
+  margin-bottom: 10px;
+`;
+
+const ConfirmButton = styled.button`
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #CB2F2F;
+  line-height: 25px;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 14px;
+  outline: none;
+  padding: 0 15px;
+
+  &:hover{
+    background-color: #a31c1c;
+  }
 `;
 
 export default {
   Container,
+  UpPart,
   Header,
   TitleContainer,
   CartIcon,
@@ -61,4 +122,9 @@ export default {
   CloseButton,
   Content,
   Footer,
+  TotalContainer,
+  TotalLabel,
+  TotalValue,
+  TotalDiscount,
+  ConfirmButton,
 };

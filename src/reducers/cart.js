@@ -15,6 +15,7 @@ function reducer(state = {}, action) {
           name: item.name,
           pack: item.pack,
           price: item.price,
+          originalPrice: item.originalPrice,
           unitPrice: item.unitPrice,
           discount: item.discount,
           quantity: item.quantity,

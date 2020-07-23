@@ -19,6 +19,7 @@ const ProductCard = (props) => {
   const { uuid, image, name, vendor, packs } = props;
 
   const [selectablesPacks, setSelectablesPacks] = useState([]);
+  const [showNotificationCart, setShowNotificationCart] = useState(false);
   const [priceValues, setPriceValues] = useState({
     originalPrice: 0,
     currentPrice: 0,
@@ -56,6 +57,12 @@ const ProductCard = (props) => {
     }
   },[selectablesPacks]);
 
+  const activeNotification = () => {
+    setShowNotificationCart(true);
+    setTimeout(()=>{
+      setShowNotificationCart(false);
+    }, 2500);
+  }
   /**
    *  Modifies the selected item acordding by click
    */
@@ -74,11 +81,13 @@ const ProductCard = (props) => {
       name,
       pack: selectedPack.unities,
       price: roundCurrency(priceValues.currentPrice),
+      originalPrice: roundCurrency(priceValues.originalPrice),
       unitPrice: roundCurrency(priceValues.unitPrice),
       discount: Number(priceValues.discount),
       quantity: 1,
     }
     dispatch(setItem(item));
+    activeNotification();
   };
 
   return (
@@ -160,6 +169,13 @@ const ProductCard = (props) => {
       <Style.AddButton onClick={addToCart}>
         {'ADICIONAR AO CARRINHO'}
       </Style.AddButton>
+      {
+        !!showNotificationCart && (
+          <Style.NotificationCart>
+            {'Novo Item Adicionado ao Carrinho'}
+          </Style.NotificationCart>
+        )
+      }
     </Style.Container>
   );
 }

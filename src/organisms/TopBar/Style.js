@@ -12,13 +12,34 @@ const Container = styled.div`
   padding: 5px 40px;
 `;
 
-const ShoppingCartIcon = styled.img`
+const CartIconContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+`;
+
+const CartIcon = styled.img`
   width: 40px;
   height: 35px;
   cursor: pointer;
 `;
 
+const Quantity = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  height: 20px;
+  width: 20px;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: bold;
+  background-color: #CB2F2F;
+`;
+
 export default {
   Container,
-  ShoppingCartIcon,
+  CartIconContainer,
+  CartIcon,
+  Quantity,
 };

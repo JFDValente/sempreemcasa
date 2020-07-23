@@ -221,6 +221,39 @@ const AddButton = styled.button`
   }
 `;
 
+const NotificationCart = styled.div`
+  position: absolute;
+  top: 70px;
+  right: 40px;
+  height: 40px;
+  width: 200px;
+  text-align: center;
+  z-index: 1;
+  background-color: #FFFFFF;
+  align-items: center;
+  border: 2px #A4A4A4 solid;
+  border-radius: 5px;
+  font-size: 14px;
+  opacity: 100%;
+  display: flex;
+
+  transform: translateY(0%);
+  @keyframes notification{
+    from {
+      transform: translateY(-100%);
+      opacity: 0%;
+    }
+    to {
+      transform: translateY(0%);
+      opacity: 100%
+    }
+  }
+
+  animation-name: notification;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+`;
+
 export default {
   Container,
   ImageContainer,
@@ -247,4 +280,5 @@ export default {
   PackUnities,
   TextUnities,
   AddButton,
+  NotificationCart,
 };

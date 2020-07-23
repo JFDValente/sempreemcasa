@@ -1,10 +1,11 @@
 import App from 'next/app';
+import { PersistGate } from 'redux-persist/integration/react';
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 import styledNormalize from 'styled-normalize';
 import { ThemeProvider } from 'styled-components';
 
-import { wrapper } from '../store';
+import { wrapper, persistor } from '../store';
 import baseTheme from '../utils/theme';
 
 const GlobalStyle = createGlobalStyle`
@@ -18,14 +19,16 @@ const GlobalStyle = createGlobalStyle`
 
 class MainApp extends App {
 	render() {
-		const { Component, pageProps, store } = this.props;
+		const { Component, pageProps } = this.props;
 		return (
-			<ThemeProvider theme={baseTheme}>
-				<>
-					<Component {...pageProps} />
-					<GlobalStyle />
-				</>
-			</ThemeProvider>
+			<PersistGate persistor={persistor} loading={null}>
+				<ThemeProvider theme={baseTheme}>
+					<>
+						<Component {...pageProps} />
+						<GlobalStyle />
+					</>
+				</ThemeProvider>
+			</PersistGate>
 		);
 	}
 }
