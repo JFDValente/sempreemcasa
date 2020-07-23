@@ -11,6 +11,8 @@ import Style from './Style';
  * This Atom renders all the information for a given product, in the catalog
  */
 const ProductCard = (props) => {
+  const { image, name, vendor, packs } = props;
+
   const [selectablesPacks, setSelectablesPacks] = useState([]);
   const [priceValues, setPriceValues] = useState({
     originalPrice: 0,
@@ -18,8 +20,6 @@ const ProductCard = (props) => {
     unitPrice: 0,
     discount: 0,
   });
-
-  const { image, name, vendor, packs } = props;
 
   /**
    * Add 'Selected' prop to the packs, to control the choose of the user

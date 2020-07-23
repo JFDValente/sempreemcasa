@@ -1,4 +1,7 @@
 import Modal from '../../atoms/Modal';
+import CartProductList from '../../molecules/CartProductList';
+
+import Style from './Style';
 
 const CartModal = (props) => {
   const { closeModal } = props;
@@ -6,9 +9,25 @@ const CartModal = (props) => {
     <Modal
       backgroundClick={closeModal}
     >
-      <div css={'height: 100vh;'}>
-        Teste
-      </div>
+      <Style.Container>
+        <Style.Header>
+          <Style.TitleContainer>
+            <Style.CartIcon src="/shopping-cart-icon.png"/>
+            <Style.Title>
+              {'Itens selecionados'}
+            </Style.Title>
+          </Style.TitleContainer>
+          <Style.CloseButton>
+            {'X'}
+          </Style.CloseButton>
+        </Style.Header>
+        <Style.Content>
+          <CartProductList />
+        </Style.Content>
+        <Style.Footer>
+
+        </Style.Footer>
+      </Style.Container>
     </Modal>  
   );
 }
