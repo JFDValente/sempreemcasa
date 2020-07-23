@@ -1,3 +1,3 @@
-const formatDiscount = (discount, withSymbol) => `${discount.toFixed(0)}${withSymbol ? '%' : ''}`;
+const formatDiscount = (discount) => `${discount.toFixed(0)}`;
 
 export { formatDiscount };

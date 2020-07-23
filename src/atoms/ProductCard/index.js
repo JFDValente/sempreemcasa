@@ -40,7 +40,8 @@ const ProductCard = (props) => {
     if (selectedPack) {
       const { originalPrice, currentPrice, unities } = selectedPack;
       const unitPrice = currentPrice/unities;
-      const discount = 100 - ((currentPrice*100)/originalPrice);
+      let discount = 100 - ((currentPrice*100)/originalPrice);
+      discount = formatDiscount(discount);
       setPriceValues({
         originalPrice,
         currentPrice,
@@ -66,7 +67,7 @@ const ProductCard = (props) => {
         {!!(priceValues.discount > 15) && (
           <Style.DiscountBanner>
             <Style.DiscountValueBanner>
-              {formatDiscount(priceValues.discount, false)}
+              {priceValues.discount}
             </Style.DiscountValueBanner>
             <Style.TextDiscountBanner>
               {'%OFF'}
@@ -110,7 +111,7 @@ const ProductCard = (props) => {
               {'Desconto'}
             </Style.DiscountLabel>
             <Style.DiscountPercent>
-              {formatDiscount(priceValues.discount, true)}
+              {`${priceValues.discount}%`}
             </Style.DiscountPercent>
           </Style.DiscountContainer>
         )}
