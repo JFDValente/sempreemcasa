@@ -3,7 +3,7 @@ import {
   func, node,
 } from 'prop-types';
 
-import Style from './Modal.style';
+import Style from './Style';
 
 const Modal = (props) => {
   const {

@@ -3,6 +3,8 @@ import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 import styledNormalize from 'styled-normalize';
 import { ThemeProvider } from 'styled-components';
+
+import { wrapper } from '../store';
 import baseTheme from '../utils/theme';
 
 const GlobalStyle = createGlobalStyle`
@@ -16,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
 
 class MainApp extends App {
 	render() {
-		const { Component, pageProps } = this.props;
+		const { Component, pageProps, store } = this.props;
 		return (
 			<ThemeProvider theme={baseTheme}>
 				<>
@@ -28,4 +30,4 @@ class MainApp extends App {
 	}
 }
 
-export default MainApp;
+export default wrapper.withRedux(MainApp);
