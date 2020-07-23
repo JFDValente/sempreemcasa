@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   arrayOf, bool, number, shape, string,
 } from 'prop-types';
-import { formatCurrency } from '../../utils/currency';
+
+import { setItem } from '../../actions/cart';
+
+import { formatCurrency, roundCurrency } from '../../utils/currency';
 import { formatDiscount } from '../../utils/discount';
 
 import Style from './Style';
@@ -11,7 +15,8 @@ import Style from './Style';
  * This Atom renders all the information for a given product, in the catalog
  */
 const ProductCard = (props) => {
-  const { image, name, vendor, packs } = props;
+  const dispatch = useDispatch();
+  const { uuid, image, name, vendor, packs } = props;
 
   const [selectablesPacks, setSelectablesPacks] = useState([]);
   const [priceValues, setPriceValues] = useState({
@@ -59,6 +64,21 @@ const ProductCard = (props) => {
       item.uuid === uuid ? { ...item, selected: true } : { ...item, selected: false} 
     ));
     setSelectablesPacks(updatedPacks);
+  };
+
+  const addToCart = () => {
+    const selectedPack = selectablesPacks.find(pack => pack.selected);
+    const item = {
+      uuid,
+      image,
+      name,
+      pack: selectedPack.unities,
+      price: roundCurrency(priceValues.currentPrice),
+      unitPrice: roundCurrency(priceValues.unitPrice),
+      discount: Number(priceValues.discount),
+      quantity: 1,
+    }
+    dispatch(setItem(item));
   };
 
   return (
@@ -137,7 +157,7 @@ const ProductCard = (props) => {
           ))
         }
       </Style.PackContainer>
-      <Style.AddButton>
+      <Style.AddButton onClick={addToCart}>
         {'ADICIONAR AO CARRINHO'}
       </Style.AddButton>
     </Style.Container>
@@ -145,6 +165,7 @@ const ProductCard = (props) => {
 }
 
 ProductCard.propTypes = {
+  uuid: string.isRequired,
   image: string.isRequired,
   name: string.isRequired,
   vendor: string,

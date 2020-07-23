@@ -6,8 +6,9 @@ const Container = styled.div`
   flex-direction: row;
   align-items: center;
   height: 81px;
-  min-width: 320px;
-  max-width: ${({ theme: { width } }) => (width.get('slim'))};
+  min-width: 310px;
+  max-width: 320px;
+  margin-bottom: 20px;
 `;
 
 const containerItem = css`
@@ -52,9 +53,11 @@ const ImageContainer = styled.div`
 const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   justify-content: space-between;
   height: 70px;
   margin-left: 10px;
+  max-width: 210px;
 `;
 
 const DiscountBanner = styled.div`
@@ -104,8 +107,9 @@ const Title = styled.p`
   margin-bottom: 7px;
   font-size: 13px;
   font-weight: bold;
-  text-align: center;
+  text-align: left;
   line-height: 14px;
+  width: 210px;
 
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -131,6 +135,7 @@ const ValuesContainer = styled.div`
 `;
 
 const Subtotal = styled.span`
+  text-align: right;
   font-size: 18px;
   font-weight: bold;
   color: #575A6D;
