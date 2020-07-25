@@ -2,6 +2,8 @@
 
 Este projeto é a implementação do Desafio de FrontEnd do "Sempre em Casa".
 
+Consiste em um catálogo de ecommerce com algumas funcionalidades de Carrinho de Compras.
+
 ## Setup:
 - NodeJS;
 - NPM;
