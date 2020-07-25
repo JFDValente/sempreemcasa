@@ -28,16 +28,13 @@ const makeStore = () => {
 
   const persistedReducer = persistReducer(persistConfig, reducer);
   const store = makeConfiguredStore(persistedReducer);
+  store.__persistor = persistStore(store);
 
   return store;
 };
 
-const store = makeStore();
-const persistor = persistStore(store);
-
 const wrapper = createWrapper(makeStore);
 
 export {
-  persistor,
   wrapper,
 }
