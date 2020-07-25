@@ -1,5 +1,6 @@
 import {
   SET_ITEM,
+  DELETE_ITEM,
   CLEAR_CART,
 } from '../actions/cart';
 
@@ -11,6 +12,15 @@ function reducer(state = [], action) {
       return [
         ...state,
         item,
+      ];
+    }
+    case DELETE_ITEM:
+    {
+      const { uuid } = action;
+      const index = state.map(i => i.uuid).indexOf(uuid);
+      return [
+        ...state.slice(0,index),
+        ...state.slice(index+1),
       ];
     }
     case CLEAR_CART:

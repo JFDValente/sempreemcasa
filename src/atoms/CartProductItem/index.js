@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   number, string,
 } from 'prop-types';
+
+import { deleteItem } from '../../actions/cart';
+
 import { formatCurrency } from '../../utils/currency';
 import { formatDiscount } from '../../utils/discount';
 
@@ -13,6 +17,7 @@ import Style from './Style';
  * This Atom renders all the information for a given product, in the catalog
  */
 const CartProductItem = (props) => {
+  const dispatch = useDispatch();
   const {
     uuid,
     image,
@@ -34,6 +39,10 @@ const CartProductItem = (props) => {
   const doIncrement = (uuid) => {}
 
   const doDecrement = (uuid) => {}
+
+  const deleteClick = (uuid) => {
+    dispatch(deleteItem(uuid));
+  }
 
   return (
     <Style.Container>
@@ -81,6 +90,7 @@ const CartProductItem = (props) => {
         <Style.DeleteButton
           src="/trash-icon-gray.png"
           alt={'image-chat'}
+          onClick={() => { deleteClick(uuid) }}
         />
       </Style.Action>
     </Style.Container>
