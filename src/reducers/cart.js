@@ -3,32 +3,19 @@ import {
   CLEAR_CART,
 } from '../actions/cart';
 
-function reducer(state = {}, action) {
+function reducer(state = [], action) {
   switch (action.type) {
     case SET_ITEM:
     {
       const { item } = action;
-      const itemFormatted = {
-        [item.uuid]: {
-          uuid: item.uuid,
-          image: item.image,
-          name: item.name,
-          pack: item.pack,
-          price: item.price,
-          originalPrice: item.originalPrice,
-          unitPrice: item.unitPrice,
-          discount: item.discount,
-          quantity: item.quantity,
-        },
-      };
-      return {
+      return [
         ...state,
-        ...itemFormatted,
-      };
+        item,
+      ];
     }
     case CLEAR_CART:
     {
-      return null;
+      return [];
     }
     default:
       return state;

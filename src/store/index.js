@@ -1,8 +1,6 @@
 import { createStore, combineReducers } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import { createWrapper } from 'next-redux-wrapper';
-import storage from 'redux-persist/lib/storage';
-import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 
 import modal from '../reducers/modal';
 import cart from '../reducers/cart';
@@ -21,11 +19,10 @@ const makeStore = () => {
   if (isServer) {
     return makeConfiguredStore(reducer);
   }
-
+  const storage = require('redux-persist/lib/storage');
   const persistConfig = {
     key: 'root',
-    storage,
-    stateReconciler: autoMergeLevel2,
+    storage: storage.default,
     whitelist: ["cart"],
   };
 

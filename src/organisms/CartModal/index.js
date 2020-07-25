@@ -9,9 +9,7 @@ import Style from './Style';
 
 const CartModal = (props) => {
   const { closeModal } = props;
-  const cart = useSelector(state => state.cart);
-  const items = Object.keys(cart).map(key => cart[key]);
-
+  const items = useSelector(state => state.cart);
   const calcTotal = (items) => {
     const sum = items.reduce((prev, cur) => {
       const totalItem = cur.quantity * cur.price;
@@ -24,7 +22,6 @@ const CartModal = (props) => {
     const total = calcTotal(items);
     const originalTotal = items.reduce((prev, cur) => {
       const totalItem = cur.quantity * cur.originalPrice;
-      console.log(cur);
       return prev + totalItem;
     }, 0);
     return originalTotal - total;

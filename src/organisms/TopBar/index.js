@@ -4,7 +4,7 @@ import Style from './Style';
 
 const TopBar = (props) => {
   const cart = useSelector(state => state.cart);
-  const quantityItems = Object.keys(cart).length;
+  const quantityItems = cart.length;
   const { openModal } = props;
   return (
     <Style.Container>

@@ -28,7 +28,7 @@ const CartProductList = (props) => {
 }
 
 CartProductList.propTypes = {
-  products: arrayOf(shape()).isRequired,
+  items: arrayOf(shape()).isRequired,
 };
 
 export default CartProductList;
