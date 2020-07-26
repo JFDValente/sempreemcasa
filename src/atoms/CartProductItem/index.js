@@ -4,7 +4,7 @@ import {
   number, string,
 } from 'prop-types';
 
-import { deleteItem } from '../../actions/cart';
+import { deleteItem, updateQuantity } from '../../actions/cart';
 
 import { formatCurrency } from '../../utils/currency';
 import { formatDiscount } from '../../utils/discount';
@@ -36,9 +36,19 @@ const CartProductItem = (props) => {
     setSubTotal(quantity*price);
   }, [quantity]);
 
-  const doIncrement = (uuid) => {}
+  const doIncrement = (uuid) => {
+    if (quantity < 999) {
+      const newQuantity = quantity + 1;
+      dispatch(updateQuantity(uuid, newQuantity));
+    }
+  }
 
-  const doDecrement = (uuid) => {}
+  const doDecrement = (uuid) => {
+    if (quantity>1) {
+      const newQuantity = quantity - 1;
+      dispatch(updateQuantity(uuid, newQuantity));
+    }
+  }
 
   const deleteClick = (uuid) => {
     dispatch(deleteItem(uuid));
@@ -77,8 +87,8 @@ const CartProductItem = (props) => {
           <Style.ValuesContainer>
             <QuantityInput
               value={quantity}
-              doIncrement={doIncrement}
-              doDecrement={doDecrement}
+              doIncrement={() => { doIncrement(uuid) }}
+              doDecrement={() => { doDecrement(uuid) }}
             />
             <Style.Subtotal>
               {formatCurrency(subTotal)}
