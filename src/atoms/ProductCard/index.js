@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   arrayOf, bool, number, shape, string,
 } from 'prop-types';
@@ -20,12 +20,14 @@ const ProductCard = (props) => {
 
   const [selectablesPacks, setSelectablesPacks] = useState([]);
   const [showNotificationCart, setShowNotificationCart] = useState(false);
+  const [messageNotificationCart, setMessageNotificationCart] = useState('');
   const [priceValues, setPriceValues] = useState({
     originalPrice: 0,
     currentPrice: 0,
     unitPrice: 0,
     discount: 0,
   });
+  const cart = useSelector(state => state.cart);
 
   /**
    * Add 'Selected' prop to the packs, to control the choose of the user
@@ -57,7 +59,7 @@ const ProductCard = (props) => {
     }
   },[selectablesPacks]);
 
-  const activeNotification = () => {
+  const showNotification = () => {
     setShowNotificationCart(true);
     setTimeout(()=>{
       setShowNotificationCart(false);
@@ -76,7 +78,7 @@ const ProductCard = (props) => {
   const addToCart = () => {
     const selectedPack = selectablesPacks.find(pack => pack.selected);
     const item = {
-      uuid,
+      uuid: selectedPack.uuid,
       image,
       name,
       pack: selectedPack.unities,
@@ -86,8 +88,15 @@ const ProductCard = (props) => {
       discount: Number(priceValues.discount),
       quantity: 1,
     }
-    dispatch(setItem(item));
-    activeNotification();
+
+    const isNew = !cart.filter(i => (i.uuid === item.uuid && i.pack === item.pack)).length;
+    if (isNew){
+      setMessageNotificationCart('Novo item adicionado ao carrinho');
+      dispatch(setItem(item));
+    } else {
+      setMessageNotificationCart('Este item já existe no carrinho');
+    }
+    showNotification();
   };
 
   return (
@@ -172,7 +181,7 @@ const ProductCard = (props) => {
       {
         !!showNotificationCart && (
           <Style.NotificationCart>
-            {'Novo Item Adicionado ao Carrinho'}
+            {messageNotificationCart}
           </Style.NotificationCart>
         )
       }

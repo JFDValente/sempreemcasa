@@ -51,10 +51,13 @@ const CloseButton = styled.button`
 `;
 
 const Content = styled.div`
+  max-height: 82.8vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   padding: 15px 5px;
+  overflow-y: auto;
+  overflow-x: hidden;
 `;
 
 const Footer = styled.div`
